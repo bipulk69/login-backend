@@ -4,31 +4,34 @@ mongoose.connect("mongodb://localhost:27017/login-backend");
 console.log("mongodb is connected");
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    minLength: 3,
-    maxLength: 30,
-  },
   password: {
     type: String,
     required: true,
-    minLength: 6,
   },
   firstName: {
     type: String,
     required: true,
-    trim: true,
-    maxLength: 50,
   },
   lastName: {
     type: String,
     required: true,
-    trim: true,
-    maxLength: 50,
+  },
+  mobile: {
+    type: Number,
+    required: true,
+  },
+  otp: {
+    type: Number,
+  },
+  token: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  updated_at: {
+    type: Date,
   },
 });
 
