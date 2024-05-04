@@ -1,4 +1,6 @@
 module.exports = {
   JWT_EXPIRES_IN: "1d",
   JWT_SECRET: "96FFNw/HkBYSZ+aGU46E8KqXveR7gqczco/z6/g3bEs=",
+  TWILIO_ACCOUNT_SID: "AC001a628b422ad62778445c566ff151de",
+  TWILIO_AUTH_TOKEN: "c21fcdfda3cf3ad971747c9ce6dcaad9",
 };
