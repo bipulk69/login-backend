@@ -174,7 +174,8 @@ const loginWithEmail = async (req, res) => {
 
   if (!check_email || !check_password) {
     return res.json({
-      message: "Enter valid email or password",
+      message: "User doesn't exist with email",
+      status: "warning",
     });
   }
 
