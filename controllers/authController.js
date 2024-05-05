@@ -169,25 +169,31 @@ const loginWithEmail = async (req, res) => {
     });
   }
 
-  const check_email = await User.findOne({ email: email });
-  const check_password = await User.findOne({ password: password });
-
-  if (!check_email || !check_password) {
-    return res.json({
-      message: "User doesn't exist with email",
+  const check_user = await User.findOne({ email });
+  console.log(check_user);
+  if (!check_user) {
+    return res.status(400).json({
+      message: "Enter valid email",
       status: "warning",
     });
   }
+  const passwordMatch = await bcrypt.compare(password, check_user.password);
 
-  const user = await User.findOne({ email });
+  if (!passwordMatch) {
+    return res.status(400).json({
+      message: "Enter valid password",
+      status: "warning",
+    });
+  }
+  console.log(passwordMatch);
+
+  // const user = await User.findOne({ email });
+  const token = generateToken(check_user._id);
   await User.updateOne(
     { email: email },
     {
       token: token,
       updated_at: currentTime,
-      data: {
-        user,
-      },
     }
   );
 
@@ -195,7 +201,7 @@ const loginWithEmail = async (req, res) => {
     message: "Login successfully",
     status: "success",
     data: {
-      user,
+      check_user,
     },
   });
 };
