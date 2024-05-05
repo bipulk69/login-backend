@@ -170,7 +170,6 @@ const loginWithEmail = async (req, res) => {
   }
 
   const check_user = await User.findOne({ email });
-  console.log(check_user);
   if (!check_user) {
     return res.status(400).json({
       message: "Enter valid email",
@@ -185,9 +184,7 @@ const loginWithEmail = async (req, res) => {
       status: "warning",
     });
   }
-  console.log(passwordMatch);
 
-  // const user = await User.findOne({ email });
   const token = generateToken(check_user._id);
   await User.updateOne(
     { email: email },
